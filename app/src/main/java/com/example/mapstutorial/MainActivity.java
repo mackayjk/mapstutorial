@@ -37,32 +37,32 @@ public class MainActivity extends AppCompatActivity {
         Places.initialize(getApplicationContext(), "AIzaSyB2Ul315SoD2GRH-xCMvpYUQ3sOlsx7u-Q");
         placesClient = Places.createClient(this);
     }
-    public void getRestaurant(View view) {
-        initializePlaces();
-        //get the place ID
-        String placeId = "ChIJf83U3auQTYcRcsZgTfnaQOg";
-        //specify the fields to return
-        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.RATING, Place.Field.TYPES, Place.Field.WEBSITE_URI);
-        FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
-
-        placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
-            Place place = response.getPlace();
-
-            Log.v(TAG, "Restaurant found: " + place.getName());
-            Log.v(TAG, "Restaurant Address: " + place.getAddress());
-            Log.v(TAG, "Restaurant Rating: " + place.getRating());
-            Log.v(TAG, "Restaurant Type: " + place.getTypes());
-            Log.v(TAG, "Restaurant Website: " + place.getWebsiteUri());
-        }).addOnFailureListener((exception) -> {
-            if (exception instanceof ApiException) {
-                ApiException apiException = (ApiException) exception;
-                int statusCode = apiException.getStatusCode();
-                // Handle error with given status code.
-                Log.v(TAG, "Place not found: " + exception.getMessage());
-            }
-            Log.v(TAG, "This isn't working");
-        });
-    }
+//    public void getRestaurant(View view) {
+//        initializePlaces();
+//        //get the place ID
+//        String placeId = "ChIJf83U3auQTYcRcsZgTfnaQOg";
+//        //specify the fields to return
+//        List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.RATING, Place.Field.TYPES, Place.Field.WEBSITE_URI);
+//        FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
+//
+//        placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
+//            Place place = response.getPlace();
+//
+//            Log.v(TAG, "Restaurant found: " + place.getName());
+//            Log.v(TAG, "Restaurant Address: " + place.getAddress());
+//            Log.v(TAG, "Restaurant Rating: " + place.getRating());
+//            Log.v(TAG, "Restaurant Type: " + place.getTypes());
+//            Log.v(TAG, "Restaurant Website: " + place.getWebsiteUri());
+//        }).addOnFailureListener((exception) -> {
+//            if (exception instanceof ApiException) {
+//                ApiException apiException = (ApiException) exception;
+//                int statusCode = apiException.getStatusCode();
+//                // Handle error with given status code.
+//                Log.v(TAG, "Place not found: " + exception.getMessage());
+//            }
+//            Log.v(TAG, "This isn't working");
+//        });
+//    }
 
     public void loadRestaurant(View view) throws InterruptedException {
         initializePlaces();
