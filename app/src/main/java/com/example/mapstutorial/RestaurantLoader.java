@@ -1,5 +1,6 @@
 package com.example.mapstutorial;
 
+import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ public class RestaurantLoader {
         this.placesClient = placesClient;
     }
 
-    public Restaurant getRestaurant(String placeId) throws InterruptedException {
+    public Restaurant getRestaurant(String placeId, MainActivity activity) throws InterruptedException {
         //Restaurant restaurant = new Restaurant();
 
         //specify the fields to return from the Places API
@@ -41,6 +42,17 @@ public class RestaurantLoader {
                 restaurant.setRestaurantRating(place.getRating());
                 restaurant.setRestaurantType(place.getTypes());
                 restaurant.setRestaurantWebsiteUri(place.getWebsiteUri());
+
+
+                //When it done, now I have access to the info, so I can show it in the MainActivity screen...
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // This is code that will now run on the UI thread. Call the function in
+                        // MainActivity that will update the UI correctly.
+                        activity.showData(restaurant);
+                    }
+                });
 
                 //here in the Log cat message it show the correct restaurant info that is pulled from the API
                 Log.d(TAG, "Restaurant Name: " + restaurant.getRestaurantName());

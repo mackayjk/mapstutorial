@@ -64,14 +64,18 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
+
     public void loadRestaurant(View view) throws InterruptedException {
         initializePlaces();
         String placeId = "ChIJf83U3auQTYcRcsZgTfnaQOg";
         RestaurantLoader restaurantLoader = new RestaurantLoader(placesClient);
-        Restaurant r = restaurantLoader.getRestaurant(placeId);
-        Toast.makeText(this, "testing the toast message." + r.getRestaurantName(), Toast.LENGTH_SHORT).show();
+        Restaurant r = restaurantLoader.getRestaurant(placeId, this);
+        //Toast.makeText(this, "testing the toast message." + r.getRestaurantName(), Toast.LENGTH_SHORT).show();
 
     }
 
-
+    public void showData(Restaurant r)
+    {
+        Toast.makeText(this, "testing the toast message." + r.getRestaurantName(), Toast.LENGTH_SHORT).show();
+    }
 }
